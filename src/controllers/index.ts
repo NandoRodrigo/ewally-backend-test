@@ -1,6 +1,26 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
+import { dealershipService } from "../services/dealership/dealership.service";
+import { titleService } from "../services/titles/title.service";
 
-export const billetController = (req: Request, res: Response) => {
-  const billet = req.params.billet_code;
-  return res.status(200).send({ message: billet });
+export const billetController = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const billetCode = req.billet_code;
+    const dealershipIdentifier: string = "8";
+
+    let billetContent = {};
+
+    if (billetCode[0] === dealershipIdentifier) {
+      billetContent = dealershipService(billetCode);
+    } else {
+      billetContent = titleService(billetCode);
+    }
+
+    return res.status(200).json(billetContent);
+  } catch (err) {
+    next(err);
+  }
 };

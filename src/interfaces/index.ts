@@ -4,7 +4,7 @@ export interface IBilletContent {
   expirationDate: string;
 }
 
-export interface IBilletData {
+export interface ITitleBilletData {
   bank_id: string;
   currency: string;
   first_custom_field: string;
@@ -16,4 +16,15 @@ export interface IBilletData {
   barcode_dv: string;
   expires_factor: string;
   value: string;
+}
+
+export interface IDealershipBilletData {
+  dealership_code: string;
+  service_id: string;
+  reference_id: string;
+  main_dv: string;
+  value: string;
+  company_id?: string;
+  company_document?: string;
+  custom_field: string;
 }

@@ -1,11 +1,11 @@
-import { IBilletContent, IBilletData } from "../../interfaces";
-import { barcodeMaker } from "./barcodeMaker.service";
-import { dateGenerator } from "./dateGenerator.service";
-import { verifyDVs } from "./verifyDV.service";
-import { verifyMainDV } from "./verifyMainDV.service";
+import { IBilletContent, ITitleBilletData } from "../../interfaces";
+import { titleBarcodeMaker } from "./titleBarcodeMaker.service";
+import { titleDateGenerator } from "./titleDateGenerator.service";
+import { verifyTitleDVs } from "./verifyTitleDVs.service";
+import { verifyMainTitleDV } from "./verifyMainTitleDV.service";
 
 export const titleService = (billetCode: string): IBilletContent => {
-  const billetData: IBilletData = {
+  const billetData: ITitleBilletData = {
     bank_id: billetCode.slice(0, 3),
     currency: billetCode[3],
     first_custom_field: billetCode.slice(4, 9),
@@ -19,16 +19,16 @@ export const titleService = (billetCode: string): IBilletContent => {
     value: billetCode.slice(37),
   };
 
-  verifyDVs(billetData);
+  verifyTitleDVs(billetData);
 
-  const barcode = barcodeMaker(billetData);
+  const barcode = titleBarcodeMaker(billetData);
 
-  verifyMainDV(barcode);
+  verifyMainTitleDV(barcode);
 
   const billetContent: IBilletContent = {
     amount: (Number(billetData.value) / 100).toFixed(2),
     barCode: barcode,
-    expirationDate: dateGenerator(billetData.expires_factor),
+    expirationDate: titleDateGenerator(billetData.expires_factor),
   };
 
   return billetContent;

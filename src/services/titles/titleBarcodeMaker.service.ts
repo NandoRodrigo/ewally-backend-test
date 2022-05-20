@@ -1,6 +1,6 @@
-import { IBilletData } from "../../interfaces";
+import { ITitleBilletData } from "../../interfaces";
 
-export const barcodeMaker = (billetData: IBilletData): string => {
+export const titleBarcodeMaker = (billetData: ITitleBilletData): string => {
   const barcode: string =
     billetData.bank_id +
     billetData.currency +

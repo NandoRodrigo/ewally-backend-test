@@ -1,31 +1,11 @@
 import { ErrorHandler } from "../../errors";
+import { byElevenToDVSum } from "../../utils/byElevenToDVSum";
 
 const checkMainFieldDV = (
   fieldString: string,
   referenceDV: string
 ): boolean => {
-  const numberArray: Array<number> = fieldString
-    .split("")
-    .reverse()
-    .map((curr) => Number(curr));
-
-  let mainDVReference: number = 0;
-
-  for (let i = 1; i <= numberArray.length; i++) {
-    const maxPossibleMultiplier = 8;
-
-    if (i % maxPossibleMultiplier === 0) {
-      mainDVReference += numberArray
-        .slice(i - maxPossibleMultiplier, i)
-        .map((value, index) => (index + 2) * value)
-        .reduce((acc, curr) => acc + curr);
-    }
-  }
-
-  mainDVReference += numberArray
-    .slice(-3)
-    .map((value, index) => (index + 2) * value)
-    .reduce((acc, curr) => acc + curr);
+  const mainDVReference = byElevenToDVSum(fieldString);
 
   const digitRuleValue = 11;
 
@@ -37,7 +17,7 @@ const checkMainFieldDV = (
   return finalMainDV === Number(referenceDV);
 };
 
-export const verifyMainDV = (barcode: string) => {
+export const verifyMainTitleDV = (barcode: string) => {
   const firstField = barcode.slice(0, 4);
   const secondField = barcode.slice(5);
 

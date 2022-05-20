@@ -6,25 +6,19 @@ export const validateFormat = (
   res: Response,
   next: NextFunction
 ) => {
-  try {
-    const billetCode = req.params.billet_code;
+  const billetCode = req.params.billet_code;
 
-    if (billetCode.length < 47 || billetCode.length > 48) {
-      throw new ErrorHandler(
-        400,
-        "Billet code lenght must be between 47 and 48 characters"
-      );
-    }
+  if (billetCode.length < 47 || billetCode.length > 48) {
+    throw new ErrorHandler(
+      400,
+      "Billet code lenght must be between 47 and 48 characters"
+    );
+  }
 
-    if (!isNaN(Number(billetCode)) && !billetCode.includes(".")) {
-      req.billet_code = String(billetCode);
-      next();
-    } else {
-      throw new ErrorHandler(400, "Invalid characters on barcode");
-    }
-  } catch (err) {
-    next(err);
+  if (!isNaN(Number(billetCode)) && !billetCode.includes(".")) {
+    req.billet_code = String(billetCode);
+    next();
+  } else {
+    throw new ErrorHandler(400, "Invalid characters on barcode");
   }
 };
-
-// min 47 max 48

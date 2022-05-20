@@ -1,23 +1,9 @@
 import { ErrorHandler } from "../../errors";
-import { IBilletData } from "../../interfaces";
+import { ITitleBilletData } from "../../interfaces";
+import { byTenToDVSum } from "../../utils/byTenToDVSum";
 
 const checkFieldDV = (fieldString: string, dv: string): boolean => {
-  const basisValue = fieldString
-    .split("")
-    .reverse()
-    .map((curr) => Number(curr))
-    .map((value, index) =>
-      index % 2 === 0
-        ? value * 2 > 9
-          ? (value * 2)
-              .toString()
-              .split("")
-              .map((curr) => Number(curr))
-              .reduce((acc, curr) => acc + curr)
-          : value * 2
-        : value
-    )
-    .reduce((acc, curr) => acc + curr);
+  const basisValue = byTenToDVSum(fieldString);
   let currentValue = basisValue % 10;
 
   if (currentValue > 0) {
@@ -29,7 +15,7 @@ const checkFieldDV = (fieldString: string, dv: string): boolean => {
   return finalDV === dv;
 };
 
-export const verifyDVs = (billetData: IBilletData) => {
+export const verifyTitleDVs = (billetData: ITitleBilletData) => {
   const firstField =
     billetData.bank_id + billetData.currency + billetData.first_custom_field;
   const secondField = billetData.second_custom_field;

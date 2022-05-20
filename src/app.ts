@@ -9,6 +9,7 @@ app.use(express.json());
 
 initializerRouter(app);
 
+// adiciona o gerenciador para capturar possiveis erros no nível mais a cima da aplicação
 app.use(
   (err: ErrorHandler, req: Request, res: Response, next: NextFunction) => {
     handleError(err, res);

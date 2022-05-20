@@ -8,6 +8,7 @@ export const validateFormat = (
 ) => {
   const billetCode = req.params.billet_code;
 
+  // verifica se a linha digitavel possui o tamanho permitido
   if (billetCode.length < 47 || billetCode.length > 48) {
     throw new ErrorHandler(
       400,
@@ -15,6 +16,7 @@ export const validateFormat = (
     );
   }
 
+  // verifica se existem digitos além de números
   if (!isNaN(Number(billetCode)) && !billetCode.includes(".")) {
     req.billet_code = String(billetCode);
     next();

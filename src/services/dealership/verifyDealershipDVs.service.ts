@@ -9,6 +9,7 @@ const checkFieldDV = (
 ): boolean => {
   let finalDV: number = 0;
 
+  // verifica se as DVs batem com o respectivo campo baseado nas regras
   if (moduleRef === "6" || moduleRef === "7") {
     const basisValue = byTenToDVSum(fieldString);
     const currentValue = basisValue % 10;
@@ -24,6 +25,7 @@ const checkFieldDV = (
       finalDV = 0;
     }
   } else {
+    // caso o dígito para verificar a regra seja diferente dos permitidos, estoura um erro
     throw new ErrorHandler(400, "It's not possible to verify the tax factor");
   }
 
@@ -31,6 +33,7 @@ const checkFieldDV = (
 };
 
 export const verifyDealershipDVs = (billetCode: string) => {
+  // separa cada campo para verificação e seus respectivos DVs
   const firstField = billetCode.slice(0, 11);
   const firstFieldDV = billetCode[11];
   const secondField = billetCode.slice(12, 23);
@@ -48,6 +51,7 @@ export const verifyDealershipDVs = (billetCode: string) => {
     !checkFieldDV(thirdField, thirdFieldDV, moduleRef) ||
     !checkFieldDV(fourthField, fourthFieldDV, moduleRef)
   ) {
+    // caso algum campo não coincida com o DV informado, estoura o erro
     throw new ErrorHandler(400, "Invalid billet code");
   }
 };

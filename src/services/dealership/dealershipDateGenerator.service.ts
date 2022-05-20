@@ -1,4 +1,5 @@
 export const dealershipDateGenerator = (expiresFactor: string): string => {
+  // ordena e formata a data vindo pelo campo personalizado do boleto
   const dateRef =
     expiresFactor.slice(4, 6) +
     "/" +
@@ -6,12 +7,12 @@ export const dealershipDateGenerator = (expiresFactor: string): string => {
     "/" +
     expiresFactor.slice(0, 4);
 
-  console.log(expiresFactor.slice(0, 8));
-  console.log(dateRef);
   let expiresDate = "";
   try {
+    // tenta criar uma data com os dados recebidos
     expiresDate = new Date(dateRef).toISOString().split("T")[0];
   } catch (err) {
+    // caso não seja uma data válida retorna uma zerada
     expiresDate = "0000-00-00";
   }
 

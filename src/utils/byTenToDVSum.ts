@@ -1,3 +1,4 @@
+// função para encontrar a soma dos dígitos baseado no modulo 10
 export const byTenToDVSum = (fieldString: string): number => {
   const finalDVValue: number = fieldString
     .split("")

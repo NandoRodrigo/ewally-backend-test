@@ -5,9 +5,11 @@ import { verifyDealershipDVs } from "./verifyDealershipDVs.service";
 import { verifyDealershipTitleDV } from "./verifyMainDealershipDV.service";
 
 export const dealershipService = (billetCode: string): IBilletContent => {
+  // verificação das DVs da linha digitável
   verifyDealershipDVs(billetCode);
   verifyDealershipTitleDV(billetCode);
 
+  // instancia um objeto do boleto de convênio retirando os DVs dos campos 1 ao 4
   const billetData: IDealershipBilletData = {
     dealership_code: billetCode[0],
     service_id: billetCode[1],
@@ -22,6 +24,7 @@ export const dealershipService = (billetCode: string): IBilletContent => {
           billetCode.slice(36, 47),
   };
 
+  // armazena os campos dos dados referente à compania diferenciando identificação de CNPJ/MF
   if (billetCode[1] === "6") {
     billetData.company_document = billetCode.slice(16, 23) + billetCode[24];
   } else {

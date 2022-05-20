@@ -40,15 +40,15 @@ yarn start
 
 ## **Rotas**
 
-A API possúi apenas uma rotas para utilização:
+A API possúi apenas uma rota para utilização:
 
-| Método | Rota                                   |
-| :----: | -------------------------------------- |
-|  Get   | /boletos/`<linha_digitável_do_boleto>` |
+| Método | Rota                                  |
+| :----: | ------------------------------------- |
+|  Get   | /boleto/`<linha_digitável_do_boleto>` |
 
 ---
 
-### **GET /boletos/`<linha_digitável_do_boleto>`**
+### **GET /boleto/`<linha_digitável_do_boleto>`**
 
 Nessa rota é possível conferir os dados do boleto a partir da linha digitável, caso a linha digitável seja válida, retornará a seguinte resposta:
 

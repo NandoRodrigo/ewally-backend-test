@@ -7,8 +7,6 @@ export const dealershipDateGenerator = (expiresFactor: string): string => {
     "/" +
     expiresFactor.slice(0, 4);
 
-  console.log(expiresFactor.slice(0, 8));
-  console.log(dateRef);
   let expiresDate = "";
   try {
     // tenta criar uma data com os dados recebidos

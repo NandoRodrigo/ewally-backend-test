@@ -34,7 +34,7 @@ yarn start
 
 ## **Utilização**
 
-**Obs**: Para a correta utilização da API, é necessário algum _Client_, tal como o [Insomnia](https://insomnia.rest/).
+**Obs**: Para a correta utilização da API, é necessário algum _Client_, tal como o [Insomnia](https://insomnia.rest/). A aplicação está rodando na porta _8080_.
 
 ---
 

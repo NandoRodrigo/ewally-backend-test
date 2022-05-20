@@ -5,6 +5,7 @@ import { verifyTitleDVs } from "./verifyTitleDVs.service";
 import { verifyMainTitleDV } from "./verifyMainTitleDV.service";
 
 export const titleService = (billetCode: string): IBilletContent => {
+  // instancia um objeto do boleto de título
   const billetData: ITitleBilletData = {
     bank_id: billetCode.slice(0, 3),
     currency: billetCode[3],
@@ -19,10 +20,13 @@ export const titleService = (billetCode: string): IBilletContent => {
     value: billetCode.slice(37),
   };
 
+  // verifica os DVs
   verifyTitleDVs(billetData);
 
+  // cria o código de barras
   const barcode = titleBarcodeMaker(billetData);
 
+  // verifica o DV principal a partir do código de barras
   verifyMainTitleDV(barcode);
 
   const billetContent: IBilletContent = {

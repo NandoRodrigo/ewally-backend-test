@@ -1,6 +1,7 @@
 import { ErrorHandler } from "../../errors";
 import { byElevenToDVSum } from "../../utils/byElevenToDVSum";
 
+// verifica a DV principal a partir do código de barra
 const checkMainFieldDV = (
   fieldString: string,
   referenceDV: string
@@ -25,6 +26,7 @@ export const verifyMainTitleDV = (barcode: string) => {
   const fieldString = firstField + secondField;
 
   if (!checkMainFieldDV(fieldString, referenceDV)) {
+    // caso não coincidam estoura o erro
     throw new ErrorHandler(400, "Billet code mismatch the identifier code");
   }
 };

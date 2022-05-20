@@ -1,3 +1,4 @@
+// função para encontrar a soma dos dígitos baseado no modulo 11
 export const byElevenToDVSum = (fieldString: string): number => {
   const numberArray: Array<number> = fieldString
     .split("")

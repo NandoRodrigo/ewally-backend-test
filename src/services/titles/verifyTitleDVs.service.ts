@@ -2,6 +2,7 @@ import { ErrorHandler } from "../../errors";
 import { ITitleBilletData } from "../../interfaces";
 import { byTenToDVSum } from "../../utils/byTenToDVSum";
 
+// verifica as DVs dos 3 primeiros campos do boleto de títulos
 const checkFieldDV = (fieldString: string, dv: string): boolean => {
   const basisValue = byTenToDVSum(fieldString);
   let currentValue = basisValue % 10;
@@ -26,6 +27,7 @@ export const verifyTitleDVs = (billetData: ITitleBilletData) => {
     !checkFieldDV(secondField, billetData.second_field_dv) ||
     !checkFieldDV(thirdField, billetData.third_field_dv)
   ) {
+    // caso algum DV não coincida com o informado no campo estoura o erro
     throw new ErrorHandler(400, "Invalid billet code");
   }
 };

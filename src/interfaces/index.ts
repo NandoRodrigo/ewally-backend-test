@@ -1,9 +1,11 @@
+// interface para a resposta da API
 export interface IBilletContent {
   amount: string;
   barCode: string;
   expirationDate: string;
 }
 
+// interface para criar o objeto de títulos
 export interface ITitleBilletData {
   bank_id: string;
   currency: string;
@@ -18,6 +20,7 @@ export interface ITitleBilletData {
   value: string;
 }
 
+// interface para criar o objeto de convênios
 export interface IDealershipBilletData {
   dealership_code: string;
   service_id: string;

@@ -1,5 +1,6 @@
 import { IDealershipBilletData } from "../../interfaces";
 
+// cria o código de barras
 export const dealerBarcodeMaker = (
   billetData: IDealershipBilletData
 ): string => {

@@ -1,5 +1,6 @@
 import { Response } from "express";
 
+// cria uma classe de erro personalizada
 export class ErrorHandler extends Error {
   statusCode;
 
@@ -10,6 +11,7 @@ export class ErrorHandler extends Error {
   }
 }
 
+// cria um gerenciador para o retorno de mensagens e códigos personalizados
 export const handleError = (err: ErrorHandler, res: Response) => {
   const { statusCode, message } = err;
 

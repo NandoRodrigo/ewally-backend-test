@@ -8,6 +8,7 @@ export const billetController = (
   next: NextFunction
 ) => {
   try {
+    // tenta realizar a consulta baseado no dígito inicial para definir o tipo do boleto
     const billetCode = req.billet_code;
     const dealershipIdentifier: string = "8";
 
@@ -21,6 +22,8 @@ export const billetController = (
 
     return res.status(200).json(billetContent);
   } catch (err) {
+    // caso estoure algum erro será passado adiante
+
     next(err);
   }
 };
